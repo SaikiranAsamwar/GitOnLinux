@@ -1,148 +1,114 @@
-# Git & Python on AWS Linux  – Adding Files to Repository
+# Git Setup and Repository Workflow on AWS Linux (YUM Based System)
 
-This repository demonstrates how to set up **Git**, configure it, create a file, and push it to GitHub.  
-It also explains how to launch a Linux instance on AWS EC2.  
-
-
-## 🚀 Launching a Linux Instance on AWS Console
-
-Follow these steps to launch an EC2 Linux instance on AWS:
-
-1. **Login to AWS Management Console**  
-   - Go to [AWS Console](https://aws.amazon.com/console/).  
-   - Sign in with your credentials.
-
-2. **Navigate to EC2 Service**  
-   - In the search bar, type **EC2** and open the EC2 Dashboard.
-
-3. **Launch Instance**  
-   - Click on **Launch Instance** button.  
-   - Provide a **Name** for your instance (e.g., `gitlnx`).
-
-4. **Choose Amazon Machine Image (AMI)**  
-   - Select **Amazon Linux 2 AMI** (or Ubuntu if preferred).
-
-5. **Select Instance Type**  
-   - Choose **t2.micro** (Free Tier eligible).
-
-6. **Key Pair Configuration**  
-   - Select an existing key pair or create a new one.  
-   - Download the `.pem` key file safely (used for SSH login).
-
-7. **Configure Network**  
-   - Default VPC and subnet are fine.  
-   - Allow SSH (Port 22) and HTTP (Port 80) if needed.
-
-8. **Storage**  
-   - Default storage (8GB) is enough for testing.  
-
-9. **Review and Launch**  
-   - Click **Launch Instance**.  
-   - Wait until status shows **Running**.
-
-10. **Connect to Instance**  
-    - Select your instance → Click **Connect**.  
-    - Copy the SSH command and run in terminal:  
-      ```bash
-      ssh -i /path/to/key.pem ec2-user@<public-ip>
-      ```
+This document explains how to install Git, configure it, and manage a GitHub repository step by step on a YUM-based Linux instance.
 
 ---
 
-## 🔹 System Setup
+## 1. Update System Packages
 ```bash
-sudo hostnamectl set-hostname gitlnx   # Set hostname
-clear                                  # Clear the terminal
-sudo yum update                        # Update system packages
+sudo yum update -y
 ```
+Updates all installed packages to the latest version.  
+This ensures the system is secure and up to date before installing Git.
 
 ---
 
-## 🔹 Git Installation & Configuration
+## 2. Install Git
 ```bash
-sudo yum install git -y                # Install Git
-git --version                          # Check Git version
-git config --global user.name "Saikiran Asamwar"     # Set username
-git config --global user.email "saikiranasaamwar@gmail.com"  # Set email
-git config --list                      # Verify Git configurations
+sudo yum install git -y
 ```
+Installs Git on the system.  
+The `-y` flag auto-confirms the installation prompts.
 
 ---
 
-## 🔹 Python Installation
+## 3. Configure Git (Global Settings)
 ```bash
-sudo yum install python3 -y            # Install Python3
-python3 --version                      # Check Python version
+git config --global user.name "Saikiran Asamwar"
+git config --global user.email "saikiranasamwar@gmail.com"
+git config --list
 ```
+Sets your Git username and email globally for all repositories.  
+`git config --list` verifies that the details are correctly configured.
 
 ---
 
-## 🔹 Clone Repository
+## 4. Clone Repository
 ```bash
-git clone https://github.com/SaikiranAsamwar/Demorepo.git   # Clone repo
-ls                                                          # List files
-cd Demorepo/                                                # Enter repo
-ls                                                          # Verify repo files
+git clone https://github.com/SaikiranAsamwar/Demorepo.git
+ls
 ```
+Downloads a copy of the repository from GitHub to your instance.  
+`ls` confirms that the repository folder is created.
 
 ---
 
-## 🔹 File Creation
+## 5. Remove Unwanted Repo (Optional Cleanup)
 ```bash
-touch helloworld.py                   # Create a new file
-nano helloworld.py                    # Edit the file and add code
-cat helloworld.py                     # View file content
-python3 helloworld.py                 # Run the Python script
+sudo yum rm myrepo
+ls
 ```
-
-**Example Code in `helloworld.py`:**
-```python
-print("Saikiran Asamwar")
-```
+Removes a package or repo named `myrepo` (if it exists).  
+`ls` ensures that only required files and folders remain.
 
 ---
 
-## 🔹 Staging & Committing
+## 6. Navigate to Repository
 ```bash
-git add helloworld.py                 # Stage file
-git commit -m "New file is added to the repo"   # Commit changes
-git status                            # Check repo status
+cd Demorepo/
 ```
+Moves into the cloned repository folder.  
+All further Git commands will be run inside this directory.
 
 ---
 
-## 🔹 Pushing to GitHub
+## 7. Branch Management
 ```bash
-git push origin main                  # Push commit to GitHub
-git pull                              # Pull updates from GitHub
+git branch
+git branch dev
+git checkout dev
+git branch
 ```
+`git branch` lists existing branches.  
+A new branch `dev` is created and switched to for development.
 
 ---
 
-## 🔹 Verification
+## 8. Create and Edit a File
 ```bash
-ls                                    # Check repo files
-cat helloworld.py                     # Display file content
-history                               # Show command history
+touch index.py
+sudo nano index.py
+cat index.py
+python3 index.py
 ```
+Creates a new Python file named `index.py`.  
+It is edited with `nano`, displayed using `cat`, and executed with Python.
 
 ---
 
-## ✅ Final Result
-- Launched Linux instance on AWS EC2  
-- Installed **Git & Python**  
-- Configured Git username & email  
-- Cloned repository from GitHub  
-- Created `helloworld.py`  
-- Added → Committed → Pushed changes to GitHub  
-
-🎉 Your file is now live in the repository!
-
+## 9. Git Workflow
+```bash
+git status
+git add .
+git status
+git commit -m "new file added"
+git push origin dev
+git pull
+```
+`git status` shows changes in the repo.  
+Files are staged with `git add`, committed with a message, pushed to GitHub, and `git pull` fetches the latest updates.
 
 ---
 
-## 👤 Author
+## 10. View Command History
+```bash
+history
+```
+Displays all previously executed commands in the current shell.  
+Helps in tracking or documenting the steps taken.
+
+---
+
+## Author
 **Saikiran Asamwar**  
-_A Cloud Enthusiast_  
-
----
+GitHub: [SaikiranAsamwar](https://github.com/SaikiranAsamwar)
