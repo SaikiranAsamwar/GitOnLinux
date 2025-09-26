@@ -154,16 +154,6 @@ git pull
 Checks the repo status, stages the new file, and commits it with a message.  
 Pushes changes to the remote `dev` branch and pulls any updates from GitHub.
 
----
-
-### e) View Command History
-```bash
-history
-```
-Displays the command history for collaboration steps.  
-Useful for tracking exact actions taken during teamwork.
-
----
 
 ## Author
 **Saikiran Asamwar**  
