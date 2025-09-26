@@ -43,17 +43,7 @@ Downloads a copy of the repository from GitHub to your instance.
 
 ---
 
-## 5. Remove Unwanted Repo (Optional Cleanup)
-```bash
-sudo yum rm myrepo
-ls
-```
-Removes a package or repo named `myrepo` (if it exists).  
-`ls` ensures that only required files and folders remain.
-
----
-
-## 6. Navigate to Repository
+## 5. Navigate to Repository
 ```bash
 cd Demorepo/
 ```
@@ -62,7 +52,7 @@ All further Git commands will be run inside this directory.
 
 ---
 
-## 7. Branch Management
+## 6. Branch Management
 ```bash
 git branch
 git branch dev
@@ -74,7 +64,7 @@ A new branch `dev` is created and switched to for development.
 
 ---
 
-## 8. Create and Edit a File
+## 7. Create and Edit a File
 ```bash
 touch index.py
 sudo nano index.py
@@ -86,7 +76,7 @@ It is edited with `nano`, displayed using `cat`, and executed with Python.
 
 ---
 
-## 9. Git Workflow
+## 8. Git Workflow
 ```bash
 git status
 git add .
@@ -100,12 +90,78 @@ Files are staged with `git add`, committed with a message, pushed to GitHub, and
 
 ---
 
-## 10. View Command History
+## 9. View Command History
 ```bash
 history
 ```
 Displays all previously executed commands in the current shell.  
 Helps in tracking or documenting the steps taken.
+
+---
+
+## 10. Collaboration Workflow (With Teammate Repo)
+
+This section explains how to collaborate with a teammate’s repository.
+
+---
+
+### a) Clone Teammate’s Repository
+```bash
+git clone https://github.com/Khushal41/Demorepo.git
+ls
+cd Demorepo/
+ls
+```
+Clones your teammate’s repository to your system.  
+Verifies the folder structure using `ls` and navigates inside it.
+
+---
+
+### b) Branch Management
+```bash
+git branch
+git branch dev
+git branch
+git checkout dev
+ls
+```
+Lists available branches and creates a new `dev` branch.  
+Switches to `dev` branch where development changes will be made.
+
+---
+
+### c) Create and Edit a File
+```bash
+touch index.py
+sudo nano index.py
+cat index.py
+python3 index.py
+```
+Creates `index.py`, edits it with `nano`, prints the content, and runs it with Python.  
+This verifies that the file works as expected before committing.
+
+---
+
+### d) Git Workflow (Collaboration)
+```bash
+git status
+git add index.py
+git status
+git commit -m "New file added"
+git push origin dev
+git pull
+```
+Checks the repo status, stages the new file, and commits it with a message.  
+Pushes changes to the remote `dev` branch and pulls any updates from GitHub.
+
+---
+
+### e) View Command History
+```bash
+history
+```
+Displays the command history for collaboration steps.  
+Useful for tracking exact actions taken during teamwork.
 
 ---
 
